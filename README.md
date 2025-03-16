@@ -47,7 +47,7 @@ The following libraries must be installed in Arduino IDE:
 
 1. **Make the connections**: Complete the hardware setup as per the table above.
 2. **Install libraries**: Use **Library Manager** in Arduino IDE to install the required libraries.
-3. **Upload the code**: Open `ESP8266_BLE_WiFi_Jammer.ino` in Arduino IDE and upload it to your ESP8266 board.
+3. **Upload the code**: Open `Jammer.ino` in Arduino IDE and upload it to your ESP8266 board.
 4. **Power up the device**: Connect your ESP8266 to a power source. The OLED screen will display jammer information.
 
 ## 📡 Usage
@@ -61,8 +61,8 @@ Press the button to switch between the following modes:
 
 The current mode will be displayed on the OLED screen.
 
-**Warning:** The nRF24l01 module may become very hot during use. This does not affect operation. But it may overheat your hand :D.
 **Note:** You can connect external power like small lipo batteries.
+**Warning:** The nRF24l01 module may become very hot during use. This does not affect operation. But it may overheat your hand :D.
 
 ### Example photos
 ![Front side of jammer](https://github.com/system-linux/FazJammer/blob/f7895b19fa5819ae011fccfad6261fd778de5186/photos/1.jpg?raw=true)
