@@ -62,6 +62,7 @@ Press the button to switch between the following modes:
 The current mode will be displayed on the OLED screen.
 
 **Note:** You can connect external power like small lipo batteries.
+
 **Warning:** The nRF24l01 module may become very hot during use. This does not affect operation. But it may overheat your hand :D.
 
 ### Example photos
