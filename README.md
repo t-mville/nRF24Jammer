@@ -65,7 +65,7 @@ The current mode will be displayed on the OLED screen.
 **Note:** You can connect external power like small lipo batteries.
 ### Example photos
 ![Front side of jammer](https://github.com/system-linux/FazJammer/blob/f7895b19fa5819ae011fccfad6261fd778de5186/photos/1.jpg?raw=true)
-![Other side of jammer]([https://github.com/system-linux/FazJammer/blob/main/images/2.jpg](https://github.com/system-linux/FazJammer/blob/f7895b19fa5819ae011fccfad6261fd778de5186/photos/2.jpg?raw=true))
+![Other side of jammer](https://github.com/system-linux/FazJammer/blob/f7895b19fa5819ae011fccfad6261fd778de5186/photos/2.jpg?raw=true)
 
 I will share an usage video soon
 
