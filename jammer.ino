@@ -6,6 +6,7 @@
 #include <string>
 #include "images.h"
 
+//Im using nodemcu esp8266
 RF24 radio(2, 4);//CE, CSN
 byte i = 45;
 ezButton buton(3);
