@@ -66,10 +66,9 @@ The current mode will be displayed on the OLED screen.
 **Warning:** The nRF24l01 module may become very hot during use. This does not affect operation. But it may overheat your hand :D.
 
 ### Example photos
-![Front side of jammer](https://github.com/system-linux/FazJammer/blob/f7895b19fa5819ae011fccfad6261fd778de5186/photos/1.jpg?raw=true)
+![Front side of jammer](https://github.com/system-linux/FazJammer/blob/main/photos/1.jpg?raw=true)
 ![Other side of jammer](https://github.com/system-linux/FazJammer/blob/f7895b19fa5819ae011fccfad6261fd778de5186/photos/2.jpg?raw=true)
-
-I will share an usage video soon
+![Test Video](https://youtube.com/shorts/4Mi9WWJwfMw?si=JiD3vyePKWJH0uLL)
 
 ## 📜 License & Legal Disclaimer
 
