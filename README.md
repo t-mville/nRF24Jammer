@@ -68,7 +68,7 @@ The current mode will be displayed on the OLED screen.
 ### Example photos
 ![Front side of jammer](https://github.com/system-linux/FazJammer/blob/main/photos/1.jpg?raw=true)
 ![Other side of jammer](https://github.com/system-linux/FazJammer/blob/f7895b19fa5819ae011fccfad6261fd778de5186/photos/2.jpg?raw=true)
-<iframe width="337" height="599" src="https://www.youtube.com/embed/4Mi9WWJwfMw" title="Bluetooth, Wi-Fi and 2.4 GHz Signal Jammer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+[<img src="https://github.com/system-linux/FazJammer/blob/main/photos/1.jpg?raw=true" width="50%">](https://youtube.com/shorts/4Mi9WWJwfMw?si=JiD3vyePKWJH0uLL "Now in Android: 55")
 ## 📜 License & Legal Disclaimer
 
 This project is for **educational purposes only** and unauthorized usage is **illegal**. Please check your country's laws and adhere to ethical guidelines.
