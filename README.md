@@ -55,7 +55,7 @@ The following libraries must be installed in Arduino IDE:
 When powered on, the device starts in **"Waiting Idly :("** mode by default.
 Press the button to switch between the following modes:
 
-1. **BLE & All 2.4 GHz** (Interferes with all 2.4 GHz devices)
+1. **BLE & All 2.4 GHz** (Interferes with all Bluetooth, 2.4 GHz devices)
 2. **Just Wi-Fi** (Interferes only with Wi-Fi networks)
 3. **Waiting Idly :(** (Puts the device in standby mode)
 
