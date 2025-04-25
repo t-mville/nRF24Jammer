@@ -139,4 +139,4 @@ const unsigned char helpy_menu_image[] PROGMEM = {
   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
   0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 };
-const char* feragatname = "Use of this device is solely the user's responsibility and Fazbear Entertainment cannot be held liable for damages resulting from misuse or illegal use of the device.";
+const char* feragatname = "Use of this device is solely the user's responsibility the individual who created the device and Fazbear Entertainment cannot be held liable for damages resulting from misuse or illegal use of the device.";
