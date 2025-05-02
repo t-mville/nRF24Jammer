@@ -3,32 +3,28 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 #include <string>
-#include "images.h"
 
 // Using NodeMCU ESP8266
 RF24 radio(2, 4); // CE, CSN
 byte i = 45;
 Adafruit_SSD1306 display = Adafruit_SSD1306(128, 64, &Wire);
 
-void displayMessage(const char* line, uint8_t x = 55, uint8_t y = 22, const unsigned char* bitmap = helpy_menu_image) {
+void displayMessage(const char* line, uint8_t x = 55, uint8_t y = 22, const unsigned char* bitmap = nullptr) {
   radio.powerDown();
   SPI.end();
   delay(10);
 
   display.clearDisplay();
-  if (bitmap != nullptr) {
-    display.drawBitmap(0, 0, bitmap, 128, 64, WHITE);
-  }
+  // Bitmap removed; only display text now
   display.setTextSize(1);
-
-  // We still take `line` as a C‐string here.
   String text = String(line);
   int16_t cursor_y = y;
   int16_t maxWidth = 128 - x;
   while (text.length() > 0) {
     int16_t charCount = 0, lineWidth = 0;
     while (charCount < text.length() && lineWidth < maxWidth) {
-      charCount++; lineWidth = 6 * charCount;
+      charCount++;
+      lineWidth = 6 * charCount;
     }
     if (charCount < text.length()) {
       int16_t lastSpace = text.substring(0, charCount).lastIndexOf(' ');
@@ -51,23 +47,21 @@ void displayMessage(const char* line, uint8_t x = 55, uint8_t y = 22, const unsi
 void setup() {
   Serial.begin(9600);
   Wire.begin(14, 12); // SDA, SCL
-
   if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) {
     Serial.println(F("OLED screen not found!"));
     exit(0);
   }
-
   display.clearDisplay();
   display.setTextSize(1);
   display.setTextColor(WHITE);
   display.setCursor(0, 0);
-  display.print(F("Starting Jammer..."));
+  display.print(F("Disclaimer: Use responsibly"));
   display.display();
   delay(900);
   
   if (radio.begin()) {
     delay(200);
-    radio.setAutoAck(false);
+    radio.setAutoAck(false); 
     radio.stopListening();
     radio.setRetries(0, 0);
     radio.setPayloadSize(5);
@@ -77,17 +71,15 @@ void setup() {
     radio.setCRCLength(RF24_CRC_DISABLED);
     radio.printPrettyDetails();
     radio.startConstCarrier(RF24_PA_MAX, i);
-
-    // call displayMessage with a normal C‐string
-    displayMessage("Starting Full Attack", 55, 6);
+    displayMessage("Starting Full Attack", 0, 0 );
   } else {
-    Serial.println(F("BLE Jammer couldn't be started!"));
+    Serial.println("BLE Jammer couldn't be started!");
     displayMessage("Jammer Error!");
   }
 }
 
 void loop() {
-  for (size_t ch = 0; ch < 80; ch++) {
-    radio.setChannel(ch);
+  for (size_t i = 0; i < 80; i++) {
+    radio.setChannel(i);
   }
 }
