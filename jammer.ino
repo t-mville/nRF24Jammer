@@ -4,7 +4,6 @@
 #include <Adafruit_SSD1306.h>
 #include <string>
 
-// Using NodeMCU ESP8266
 RF24 radio(2, 4); // CE, CSN
 byte i = 45;
 Adafruit_SSD1306 display = Adafruit_SSD1306(128, 64, &Wire);
@@ -15,7 +14,7 @@ void displayMessage(const char* line, uint8_t x = 55, uint8_t y = 22, const unsi
   delay(10);
 
   display.clearDisplay();
-  // Bitmap removed; only display text now
+ // Bitmap removed; only display text now
   display.setTextSize(1);
   String text = String(line);
   int16_t cursor_y = y;
