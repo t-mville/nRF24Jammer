@@ -37,6 +37,9 @@ The following libraries must be installed in Arduino IDE:
 | 3.3V       | VCC     | Power supply |
 | GND        | GND     | Ground |
 
+![image](https://github.com/user-attachments/assets/20bb7a82-9d1b-4df4-b77b-12bbbd899747)
+
+
 ## 🚀 Setup & Execution
 
 1. **Make the connections**: Complete the hardware setup as per the table above.
