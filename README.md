@@ -50,7 +50,6 @@ The following libraries must be installed in Arduino IDE:
 ## 📡 Usage
 
 When powered on, the device starts in **"Full Attack"** mode by default.
-Press the button to switch between the following modes:
 
 **Full Attack** (Interferes with all Bluetooth, 2.4 GHz devices)
 
