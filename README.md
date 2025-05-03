@@ -15,7 +15,6 @@ The following libraries must be installed in Arduino IDE:
 
 - [RF24](https://github.com/nRF24/RF24)
 - [SPI](https://github.com/espressif/arduino-esp32/tree/master/libraries%2FSPI)
-- [ezButton](https://github.com/ArduinoGetStarted/button)
 - [Adafruit GFX](https://github.com/adafruit/Adafruit-GFX-Library)
 - [Adafruit SSD1306](https://github.com/adafruit/Adafruit_SSD1306)
 
