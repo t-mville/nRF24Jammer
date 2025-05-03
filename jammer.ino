@@ -4,6 +4,7 @@
 #include <Adafruit_SSD1306.h>
 #include <string>
 
+// Using NodeMCU ESP8266
 RF24 radio(2, 4); // CE, CSN
 byte i = 45;
 Adafruit_SSD1306 display = Adafruit_SSD1306(128, 64, &Wire);
@@ -14,7 +15,7 @@ void displayMessage(const char* line, uint8_t x = 55, uint8_t y = 22, const unsi
   delay(10);
 
   display.clearDisplay();
- // Bitmap removed; only display text now
+  // Bitmap removed; only display text now
   display.setTextSize(1);
   String text = String(line);
   int16_t cursor_y = y;
@@ -60,14 +61,14 @@ void setup() {
   
   if (radio.begin()) {
     delay(200);
-    radio.setAutoAck(false); 
-    radio.stopListening();
-    radio.setRetries(0, 0);
-    radio.setPayloadSize(5);
-    radio.setAddressWidth(3);
-    radio.setPALevel(RF24_PA_MAX);
-    radio.setDataRate(RF24_2MBPS);
-    radio.setCRCLength(RF24_CRC_DISABLED);
+    radio.setAutoAck(false);                 // Disable auto-acknowledge
+    radio.setRetries(0, 0);                  // No retransmissions
+    radio.setPayloadSize(5);                 // Small, fast payloads
+    radio.setAddressWidth(3);                // Standard 3-byte address
+    radio.setPALevel(RF24_PA_MAX);           // Max power level
+    radio.setDataRate(RF24_2MBPS);           // Fastest data rate
+    radio.setCRCLength(RF24_CRC_DISABLED);   // Disable CRC for speed
+    radio.stopListening();                   // We only transmit
     radio.printPrettyDetails();
     radio.startConstCarrier(RF24_PA_MAX, i);
     displayMessage("Starting Full Attack", 0, 0 );
