@@ -18,21 +18,23 @@ RF24 radio(RF_CE, RF_CSN);
 ezButton button(BUTTON_PIN);
 Adafruit_SSD1306 display(128, 64, &Wire);
 
+// Common Wi-Fi channels (1, 6, 11)
 const int wifiFrequencies[] = {
-  2412, 2417, 2422, 2427, 2432, 2437,
-  2442, 2447, 2452, 2457, 2462
+  2412, 2437, 2462
 };
 
 const char* modes[] = {
-  "Idle",
-  "BLE Only",
-  "Just Wi-Fi",
-  "All 2.4 GHz"
+  "Idle Mode",
+  "BLE Mode",
+  "Wi-Fi Mode",
+  "Full Sweep"
 };
 
 uint8_t attack_type = 0;
 unsigned long lastCheck = 0;
 const unsigned long checkInterval = 5000; // ms
+
+// === Helper Functions ===
 
 void pauseRadio() {
   radio.powerDown();
@@ -89,9 +91,43 @@ void displayMessage(const char* line, uint8_t x = 0, uint8_t y = 24) {
   resumeRadio();
 }
 
-void advertising() {
-  displayMessage("Jammer up. Click the button and discover all modes!", 0, 24);
+void displayModeInfo(const char* modeName, const char* channels) {
+  pauseRadio();
+  display.clearDisplay();
+  display.setTextSize(1);
+  display.setTextColor(WHITE);
+  printCenteredText(String(modeName), 18);
+  printCenteredText(String(channels), 34);
+  display.display();
+  resumeRadio();
 }
+
+// === Attack Modes ===
+
+void advertising() {
+  displayMessage("Jammer ready. Press Flash to cycle modes.", 0, 24);
+}
+
+void fullAttack() {
+  for (size_t i = 0; i < 80; i++) {
+    radio.setChannel(i);
+  }
+}
+
+void wifiAttack() {
+  for (int i = 0; i < sizeof(wifiFrequencies) / sizeof(wifiFrequencies[0]); i++) {
+    radio.setChannel(wifiFrequencies[i] - 2400); // Convert to channel number
+  }
+}
+
+void bleAttack() {
+  const uint8_t bleChannels[] = {2, 26, 80}; // BLE: 2402, 2426, 2480 MHz
+  for (uint8_t i = 0; i < 3; i++) {
+    radio.setChannel(bleChannels[i]);
+  }
+}
+
+// === Setup ===
 
 void setup() {
   Serial.begin(9600);
@@ -120,35 +156,18 @@ void setup() {
     radio.startConstCarrier(RF24_PA_MAX, JAM_CHANNEL);
     advertising();
   } else {
-    Serial.println("Jammer couldn't be started!");
+    Serial.println("NRF24 not responding!");
     displayMessage("Jammer Error!");
   }
 }
 
-void fullAttack() {
-  for (size_t i = 0; i < 80; i++) {
-    radio.setChannel(i);
-  }
-}
-
-void wifiAttack() {
-  for (int i = 0; i < sizeof(wifiFrequencies) / sizeof(wifiFrequencies[0]); i++) {
-    radio.setChannel(wifiFrequencies[i] - 2400);
-  }
-}
-
-void bleAttack() {
-  const uint8_t bleChannels[] = {2, 26, 80}; // BLE: 2402, 2426, 2480 MHz
-  for (uint8_t i = 0; i < 3; i++) {
-    radio.setChannel(bleChannels[i]);
-  }
-}
+// === Radio Health Check ===
 
 void checkRadioHealth() {
   if (millis() - lastCheck >= checkInterval) {
     lastCheck = millis();
     if (!radio.isChipConnected()) {
-      Serial.println("NRF24 not responding, reinitializing...");
+      Serial.println("NRF24 lost! Reinitializing...");
       radio.begin();
       radio.setAutoAck(false);
       radio.stopListening();
@@ -163,16 +182,29 @@ void checkRadioHealth() {
   }
 }
 
+// === Main Loop ===
+
 void loop() {
   button.loop();
   if (button.isPressed()) {
     attack_type = (attack_type + 1) % 4;
-    displayMessage((String(modes[attack_type]) + " Mode").c_str(), 0, 24);
+    switch (attack_type) {
+      case 0:
+        displayModeInfo("Idle Mode", "No attack running");
+        break;
+      case 1:
+        displayModeInfo("BLE Mode", "BLE: Ch 37, 38, 39");
+        break;
+      case 2:
+        displayModeInfo("Wi-Fi Mode", "Wi-Fi: Ch 1, 6, 11");
+        break;
+      case 3:
+        displayModeInfo("Full Sweep", "2.4GHz: Ch 0 to 79");
+        break;
+    }
   }
 
   switch (attack_type) {
-    case 0:
-      break;
     case 1:
       bleAttack();
       break;
